@@ -1,8 +1,11 @@
 import App from './App.svelte'
 
+// biome-ignore lint/style/noDefaultExport:
 export default new App({
   props: {
-    name: 'world'
+    name: 'World',
+    // If public/ is in a subdirectory
+    // root: '/plantillas/velt/public/'
   },
   target: document.body
 })

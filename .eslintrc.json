@@ -23,10 +23,15 @@
     "object-curly-spacing": ["warn", "always"],
     "one-var": "off",
     "padded-blocks": ["warn", "never"],
-    "quotes": ["warn", "single", { "avoidEscape": true }],
-    "semi": ["warn", "never"],
+    "quotes": ["off", "single", { "avoidEscape": true }],
+    "semi": ["off", "never"],
     "sort-imports": "off",
-    "space-before-function-paren": ["warn", "never"]
+    "space-before-function-paren": ["warn", "never"],
+
+    /*==============================
+    =            SVELTE            =
+    ==============================*/
+    "svelte/max-attributes-per-line": ["warn", { "multiline": 1, "singleline": 4 }]
   },
   "ignorePatterns": [],
   "plugins": ["svelte"],
