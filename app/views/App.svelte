@@ -1,10 +1,17 @@
 <script>
   export let name = "";
   export let root = "";
+  let flightVersion = "";
+
+  fetch(`${root}/api/flight/version`)
+    .then((response) => response.text())
+    .then((body) => {
+      flightVersion = body;
+    });
 
   import { Router, Link, Route } from "svelte-navigator";
-  import Home from "./routes/Home.svelte";
-  import About from "./routes/About.svelte";
+  import Home from "./pages/Home.svelte";
+  import About from "./pages/About.svelte";
 </script>
 
 <Router>
@@ -19,10 +26,10 @@
       </Link>
     </nav>
     <div>
-      <Route path="{root}/">
-        <Home />
+      <Route component={Home} path="{root}/" />
+      <Route path="{root}/about">
+        <About {flightVersion} />
       </Route>
-      <Route component={About} path="{root}/about" />
     </div>
   </main>
 </Router>
