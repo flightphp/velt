@@ -1,18 +1,23 @@
+/* eslint-disable max-len */
+/* eslint-disable no-underscore-dangle */
 // @ts-check
 
 /** This script modifies the project to support TS code in .svelte files like:
 
   <script lang="ts">
-  	export let name: string;
+    export let name: string;
   </script>
- 
+
   As well as validating the code for CI.
 */
 
 /** To work on this script:
-  rm -rf test-template template && git clone sveltejs/template test-template && node scripts/setupTypeScript.js test-template
+  rm -rf test-template template
+  && git clone fadrian06/svelte-template test-template
+  && node scripts/setupTypeScript.js test-template
 */
 
+import { spawn } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { argv } from 'node:process'
@@ -28,12 +33,12 @@ const packageJson = JSON.parse(
 )
 
 packageJson.devDependencies = Object.assign(packageJson.devDependencies, {
+  '@rollup/plugin-typescript': '^11.0.0',
+  '@tsconfig/svelte': '^3.0.0',
   'svelte-check': '^3.0.0',
   'svelte-preprocess': '^5.0.0',
-  '@rollup/plugin-typescript': '^11.0.0',
-  typescript: '^4.9.0',
   tslib: '^2.5.0',
-  '@tsconfig/svelte': '^3.0.0'
+  typescript: '^4.9.0'
 })
 
 // Add script for checking
@@ -47,13 +52,14 @@ fs.writeFileSync(
   JSON.stringify(packageJson, null, '  ')
 )
 
-// mv src/main.js to main.ts - note, we need to edit rollup.config.js for this too
-const beforeMainJsPath = path.join(projectRoot, 'src', 'main.js')
-const afterMainTsPath = path.join(projectRoot, 'src', 'main.ts')
+/* mv app/main.js to main.ts - note,
+we need to edit rollup.config.js for this too */
+const beforeMainJsPath = path.join(projectRoot, 'app', 'main.js')
+const afterMainTsPath = path.join(projectRoot, 'app', 'main.ts')
 fs.renameSync(beforeMainJsPath, afterMainTsPath)
 
 // Switch the app.svelte file to use TS
-const appSveltePath = path.join(projectRoot, 'src', 'App.svelte')
+const appSveltePath = path.join(projectRoot, 'app', 'App.svelte')
 let appFile = fs.readFileSync(appSveltePath, 'utf8')
 appFile = appFile.replace('<script>', '<script lang="ts">')
 appFile = appFile.replace('export let name;', 'export let name: string;')
@@ -65,14 +71,14 @@ let rollupConfig = fs.readFileSync(rollupConfigPath, 'utf8')
 
 // Edit imports
 rollupConfig = rollupConfig.replace(
-  `'rollup-plugin-css-only';`,
+  "'rollup-plugin-css-only';",
   `'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';`
 )
 
 // Replace name of entry point
-rollupConfig = rollupConfig.replace(`'src/main.js'`, `'src/main.ts'`)
+rollupConfig = rollupConfig.replace("'app/main.js'", "'app/main.ts'")
 
 // Add preprocessor
 rollupConfig = rollupConfig.replace(
@@ -92,7 +98,7 @@ fs.writeFileSync(rollupConfigPath, rollupConfig)
 const tsconfig = `{
   "extends": "@tsconfig/svelte/tsconfig.json",
 
-  "include": ["src/**/*"],
+  "include": ["app/**/*"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
 }`
 
@@ -111,8 +117,8 @@ const svelteConfigPath = path.join(projectRoot, 'svelte.config.js')
 fs.writeFileSync(svelteConfigPath, svelteConfig)
 
 // Add global.d.ts
-const dtsPath = path.join(projectRoot, 'src', 'global.d.ts')
-fs.writeFileSync(dtsPath, `/// <reference types="svelte" />`)
+const dtsPath = path.join(projectRoot, 'app', 'global.d.ts')
+fs.writeFileSync(dtsPath, '/// <reference types="svelte" />')
 
 // Delete this script, but not during testing
 if (!argv[2]) {
@@ -144,6 +150,11 @@ fs.writeFileSync(
 
 console.info('Converted to TypeScript.')
 
-if (fs.existsSync(path.join(projectRoot, 'node_modules'))) {
-  console.info('\nYou will need to re-run your dependency manager to get started.')
-}
+// if (fs.existsSync(path.join(projectRoot, 'node_modules'))) {
+//   console.info('\nYou will need to re-run your dependency manager to get started.')
+// }
+
+spawn('npm', ['install'], {
+  shell: true,
+  stdio: ['ignore', 'inherit', 'inherit']
+})
