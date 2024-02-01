@@ -33,12 +33,12 @@ const packageJson = JSON.parse(
 )
 
 packageJson.devDependencies = Object.assign(packageJson.devDependencies, {
-  '@rollup/plugin-typescript': '^11.0.0',
-  '@tsconfig/svelte': '^3.0.0',
-  'svelte-check': '^3.0.0',
-  'svelte-preprocess': '^5.0.0',
-  tslib: '^2.5.0',
-  typescript: '^4.9.0'
+  '@rollup/plugin-typescript': '^11.1.6',
+  '@tsconfig/svelte': '^5.0.2',
+  'svelte-check': '^3.6.3',
+  'svelte-preprocess': '^5.1.3',
+  tslib: '^2.6.2',
+  typescript: '^5.3.3'
 })
 
 // Add script for checking
