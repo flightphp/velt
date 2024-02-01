@@ -18,7 +18,6 @@
     "postcss-html": "^1.6.0",
     "rollup": "^4.9.6",
     "rollup-plugin-css-only": "^4.5.2",
-    "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-svelte": "^7.1.2",
     "stylelint": "^16.2.0",
     "stylelint-config-html": "^1.1.0",
