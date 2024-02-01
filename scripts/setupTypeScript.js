@@ -71,8 +71,8 @@ let rollupConfig = fs.readFileSync(rollupConfigPath, 'utf8')
 
 // Edit imports
 rollupConfig = rollupConfig.replace(
-  "'rollup-plugin-css-only';",
-  `'rollup-plugin-css-only';
+  "'rollup-plugin-css-only'",
+  `'rollup-plugin-css-only'
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';`
 )
