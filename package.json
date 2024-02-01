@@ -1,0 +1,40 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "php -S localhost:8080 -t public",
+    "lint": "eslint ./src/* & biome lint src & stylelint \"src/*\"",
+    "lint:fix": "eslint ./src/* --fix & biome check src --apply & stylelint \"src/*\" --fix",
+    "format": "biome format src --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.56.0",
+    "eslint-plugin-svelte": "^2.35.1",
+    "postcss-html": "^1.6.0",
+    "rollup": "^4.9.6",
+    "rollup-plugin-css-only": "^4.5.2",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-svelte": "^7.1.2",
+    "stylelint": "^16.2.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-standard": "^36.0.0",
+    "svelte": "^3.59.2"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-html/svelte"
+    ],
+    "ignoreFiles": [
+      "./**/*.js"
+    ],
+    "rules": {
+      "media-feature-range-notation": "prefix"
+    }
+  }
+}

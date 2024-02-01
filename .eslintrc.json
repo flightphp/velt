@@ -1,0 +1,34 @@
+{
+  "env": { "browser": true, "node": true },
+  "extends": ["eslint:all", "plugin:svelte/all"],
+  "parserOptions": { "sourceType": "module", "ecmaVersion": 2022 },
+  "rules": {
+    /*==============================
+    =            ESLINT            =
+    ==============================*/
+    "array-element-newline": ["warn", "consistent"],
+    "capitalized-comments": "off",
+    "consistent-return": ["warn", { "treatUndefinedAsUnspecified": false }],
+    "func-style": ["warn", "declaration", { "allowArrowFunctions": true }],
+    "function-call-argument-newline": ["warn", "consistent"],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "jsx-quotes": ["warn", "prefer-single"],
+    "max-len": ["warn", { "code": 80, "tabWidth": 2 }],
+    "max-statements": ["warn", 15, { "ignoreTopLevelFunctions": true }],
+    "multiline-comment-style": ["off", "bare-block"],
+    "newline-per-chained-call": ["off", { "ignoreChainWithDepth": 3 }],
+    "no-console": "warn",
+    "no-magic-numbers": "off",
+    "no-tabs": ["warn", { "allowIndentationTabs": false }],
+    "object-curly-spacing": ["warn", "always"],
+    "one-var": "off",
+    "padded-blocks": ["warn", "never"],
+    "quotes": ["warn", "single", { "avoidEscape": true }],
+    "semi": ["warn", "never"],
+    "sort-imports": "off",
+    "space-before-function-paren": ["warn", "never"]
+  },
+  "ignorePatterns": ["src/**/*.css"],
+  "plugins": ["svelte"],
+  "globals": {}
+}

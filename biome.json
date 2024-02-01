@@ -1,0 +1,99 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "ignore": [
+      "node_modules",
+      "vendor"
+    ],
+    "ignoreUnknown": true,
+    "include": [],
+    "maxSize": 1048576
+  },
+  "javascript": {
+    "globals": [
+      "JSX",
+      "React",
+      "isDevelopment",
+      "LiveReloadChangeEvent"
+    ],
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": false
+    },
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded",
+      "trailingComma": "none",
+      "arrowParentheses": "asNeeded",
+      "bracketSameLine": true,
+      "bracketSpacing": true,
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "jsxQuoteStyle": "single",
+      "lineEnding": "lf",
+      "lineWidth": 90,
+      "quoteProperties": "asNeeded"
+    }
+  },
+  "formatter": {
+    "lineWidth": 90,
+    "enabled": true,
+    "formatWithErrors": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "ignore": [],
+    "include": []
+  },
+  "linter": {
+    "rules": {
+      "a11y": {
+        "all": true
+      },
+      "all": true,
+      "complexity": {
+        "all": true
+      },
+      "correctness": {
+        "all": true
+      },
+      "nursery": {
+        "all": true
+      },
+      "performance": {
+        "all": true
+      },
+      "security": {
+        "all": true
+      },
+      "style": {
+        "all": true
+      },
+      "suspicious": {
+        "all": true
+      }
+    },
+    "enabled": true
+  },
+  "json": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineEnding": "lf",
+      "lineWidth": 90
+    },
+    "parser": {
+      "allowComments": true,
+      "allowTrailingCommas": true
+    }
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "vcs": {
+    "clientKind": "git",
+    "enabled": false,
+    "useIgnoreFile": true
+  }
+}
