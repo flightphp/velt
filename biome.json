@@ -10,12 +10,7 @@
     "maxSize": 1048576
   },
   "javascript": {
-    "globals": [
-      "JSX",
-      "React",
-      "isDevelopment",
-      "LiveReloadChangeEvent"
-    ],
+    "globals": [],
     "parser": {
       "unsafeParameterDecoratorsEnabled": false
     },

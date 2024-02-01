@@ -28,7 +28,7 @@
     "sort-imports": "off",
     "space-before-function-paren": ["warn", "never"]
   },
-  "ignorePatterns": ["src/**/*.css"],
+  "ignorePatterns": [],
   "plugins": ["svelte"],
   "globals": {}
 }
