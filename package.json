@@ -22,7 +22,10 @@
     "stylelint": "^16.2.0",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-standard": "^36.0.0",
-    "svelte": "^3.59.2"
+    "svelte": "^3.59.2",
+    "svelte-navigator": "^3.2.2",
+    "husky": "^9.0.10",
+    "is-ci": "^3.0.1"
   },
   "stylelint": {
     "extends": [
@@ -35,8 +38,5 @@
     "rules": {
       "media-feature-range-notation": "prefix"
     }
-  },
-  "dependencies": {
-    "svelte-navigator": "^3.2.2"
   }
 }
