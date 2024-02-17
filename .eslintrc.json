@@ -31,7 +31,9 @@
     /*==============================
     =            SVELTE            =
     ==============================*/
-    "svelte/max-attributes-per-line": ["warn", { "multiline": 1, "singleline": 4 }]
+    "svelte/max-attributes-per-line": ["warn", { "multiline": 1, "singleline": 4 }],
+    "svelte/block-lang": "off",
+    "svelte/experimental-require-strict-events": "off"
   },
   "ignorePatterns": [],
   "plugins": ["svelte"],

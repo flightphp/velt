@@ -59,7 +59,7 @@ const afterMainTsPath = path.join(projectRoot, 'app', 'main.ts')
 fs.renameSync(beforeMainJsPath, afterMainTsPath)
 
 // Switch the app.svelte file to use TS
-const appSveltePath = path.join(projectRoot, 'app', 'App.svelte')
+const appSveltePath = path.join(projectRoot, 'app', 'views', 'App.svelte')
 let appFile = fs.readFileSync(appSveltePath, 'utf8')
 appFile = appFile.replace('<script>', '<script lang="ts">')
 appFile = appFile.replace('export let name;', 'export let name: string;')
