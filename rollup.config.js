@@ -1,5 +1,6 @@
 // biome-ignore lint/nursery/noNodejsModules:
 import { spawn } from 'node:child_process'
+import { defineConfig } from 'rollup'
 import svelte from 'rollup-plugin-svelte'
 import commonjs from '@rollup/plugin-commonjs'
 import terser from '@rollup/plugin-terser'
@@ -34,8 +35,7 @@ function serve() {
   }
 }
 
-// biome-ignore lint/style/noDefaultExport:
-export default {
+export default defineConfig({
   input: 'app/main.js',
   output: {
     file: 'public/build/bundle.js',
@@ -77,4 +77,4 @@ export default {
   watch: {
     clearScreen: false
   }
-}
+})

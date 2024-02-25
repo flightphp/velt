@@ -1,6 +1,5 @@
 import App from './views/App.svelte'
 
-// biome-ignore lint/style/noDefaultExport:
 export default new App({
   props: {
     name: 'World',

@@ -62,7 +62,8 @@
         "all": true
       },
       "style": {
-        "all": true
+        "all": true,
+        "noDefaultExport": "off"
       },
       "suspicious": {
         "all": true
