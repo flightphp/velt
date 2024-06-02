@@ -2,6 +2,7 @@
   export let name = "";
   export let root = "";
   let flightVersion = "";
+  let loggedUser = {};
 
   fetch(`${root}/api/flight/version`)
     .then((response) => response.text())
@@ -9,9 +10,16 @@
       flightVersion = body;
     });
 
+  fetch(`${root}/api/auth`)
+    .then((response) => response.json())
+    .then((body) => {
+      loggedUser = body
+    })
+
   import { Router, Link, Route } from "svelte-navigator";
   import Home from "./pages/Home.svelte";
   import About from "./pages/About.svelte";
+  import Login from "./pages/Login.svelte";
 </script>
 
 <Router>
@@ -24,12 +32,22 @@
       <Link to="{root}/about">
         <a href="{root}/about">About</a>
       </Link>
+      {#if loggedUser.isLogged}
+        <a href="{root}/logout">Logout</a>
+      {:else}
+        <Link to="{root}/login">
+          <a href="{root}/login">Login</a>
+        </Link>
+      {/if}
     </nav>
     <div>
-      <Route component={Home} path="{root}/" />
+      <Route primary={false} path="{root}/">
+        <Home {loggedUser} />
+      </Route>
       <Route path="{root}/about">
         <About {flightVersion} />
       </Route>
+      <Route component={Login} path="{root}/login" />
     </div>
   </main>
 </Router>
