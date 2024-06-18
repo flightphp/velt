@@ -21,7 +21,7 @@ packageJson.devDependencies = {
 
 packageJson.stylelint = {
   extends: ['stylelint-config-standard', 'stylelint-config-html/svelte'],
-  ignoreFiles: ['./**/*.js'],
+  ignoreFiles: ['./**/*.js', './**/*.ts'],
   rules: {
     'media-feature-range-notation': 'prefix'
   }
