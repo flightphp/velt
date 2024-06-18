@@ -2,19 +2,21 @@
   export let name = "";
   export let root = "";
   let flightVersion = "";
+  let svelteVersion = "";
   let loggedUser = {};
 
-  fetch(`${root}/api/flight/version`)
-    .then((response) => response.text())
+  fetch(`${root}/api/versions`)
+    .then((response) => response.json())
     .then((body) => {
-      flightVersion = body;
+      flightVersion = body[0];
+      svelteVersion = body[1];
     });
 
   fetch(`${root}/api/auth`)
     .then((response) => response.json())
     .then((body) => {
-      loggedUser = body
-    })
+      loggedUser = body;
+    });
 
   import { Router, Link, Route } from "svelte-navigator";
   import Home from "./pages/Home.svelte";
@@ -44,8 +46,8 @@
       <Route primary={false} path="{root}/">
         <Home {loggedUser} />
       </Route>
-      <Route path="{root}/about">
-        <About {flightVersion} />
+      <Route primary={false} path="{root}/about">
+        <About {flightVersion} {svelteVersion} />
       </Route>
       <Route component={Login} path="{root}/login" />
     </div>

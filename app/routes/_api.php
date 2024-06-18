@@ -1,11 +1,14 @@
 <?php
 
-Flight::route('/api/flight/version', function (): void {
+Flight::route('/api/versions', function (): void {
   // Don't do this in your houses, only for testing purposes 🚫
-  $composer = json_decode(file_get_contents(ROOT . '/composer.json'), true);
-  $version = $composer['require']['flightphp/core'];
+  $composerJson = json_decode(file_get_contents(ROOT . '/composer.json'), true);
+  $packageJson = json_decode(file_get_contents(ROOT . '/package.json'), true);
 
-  echo $version;
+  echo json_encode([
+    $composerJson['require']['flightphp/core'],
+    $packageJson['devDependencies']['svelte']
+  ]);
 });
 
 Flight::route('/api/auth', function (): void {
