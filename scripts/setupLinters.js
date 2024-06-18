@@ -1,6 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import url from 'node:url'
 import { argv } from 'node:process'
+import { spawn } from 'node:child_process'
+
+const __filename = url.fileURLToPath(import.meta.url)
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
 const packageJson = JSON.parse(fs.readFileSync('package.json', { encoding: 'utf8' }))
 
@@ -55,7 +60,9 @@ if (!argv[2]) {
   }
 }
 
-console.info(
-  'Linter dependencies added, please run npm install or its alternatives.',
-  '(pnpm install, yarn install or bun install)'
-)
+console.info('Linter dependencies added')
+
+spawn('npm', ['install'], {
+  shell: true,
+  stdio: ['ignore', 'inherit', 'inherit']
+})
