@@ -39,7 +39,8 @@
       "package-lock.json",
       "package.json",
       "README.md",
-      "rollup.config.js"
+      "rollup.config.js",
+      "jsconfig.json"
     ]
   }
 }
