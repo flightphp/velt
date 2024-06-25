@@ -28,32 +28,32 @@
     });
 </script>
 
-<Router>
+<Router basepath={BASE_URL}>
   <main>
     <h1>Hello {name}!</h1>
     <nav>
-      <Link to="{BASE_URL}/">
-        <a href="{BASE_URL}/">Home</a>
+      <Link to="/">
+        <a href="/">Home</a>
       </Link>
-      <Link to="{BASE_URL}/about">
-        <a href="{BASE_URL}/about">About</a>
+      <Link to="/about">
+        <a href="/about">About</a>
       </Link>
       {#if loggedUser.isLogged}
-        <a href="{BASE_URL}/logout">Logout</a>
+        <a href="/logout">Logout</a>
       {:else}
-        <Link to="{BASE_URL}/login">
-          <a href="{BASE_URL}/login">Login</a>
+        <Link to="/login">
+          <a href="/login">Login</a>
         </Link>
       {/if}
     </nav>
     <div>
-      <Route primary={false} path="{BASE_URL}/">
+      <Route primary={false} path="/">
         <Home {loggedUser} />
       </Route>
-      <Route primary={false} path="{BASE_URL}/about">
+      <Route primary={false} path="/about">
         <About {flightVersion} {svelteVersion} />
       </Route>
-      <Route component={Login} path="{BASE_URL}/login" />
+      <Route component={Login} path="/login" />
     </div>
   </main>
 </Router>
