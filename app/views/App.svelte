@@ -5,11 +5,15 @@
   import Login from "./pages/Login.svelte";
   import { BASE_URL } from "./consts";
 
+  // Declares a component prop, it takes the value of main.js:5 name: 'World'
   export let name = "";
+
+  // Local state
   let flightVersion = "";
   let svelteVersion = "";
   let loggedUser = {};
 
+  // It executes each time a component instance is created before render
   fetch(`${BASE_URL}/api/versions`)
     .then((response) => response.json())
     .then((body) => {
