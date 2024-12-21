@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title><?= $title ?? 'Svelte app' ?></title>
-    <link rel="icon" type="image/png" href="<?= root() ?>/favicon.png" />
-    <link rel="stylesheet" href="<?= root() ?>/global.css" />
-    <link rel="stylesheet" href="<?= root() ?>/build/bundle.css">
-    <script defer src="<?= root() ?>/build/bundle.js"></script>
+    <base href="<?= str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) ?>" />
+    <link rel="icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./build/bundle.css">
+    <script defer src="./build/bundle.js"></script>
   </head>
   <body>
     <!-- Here will be rendered App.svelte, check main.js ➡ target -->

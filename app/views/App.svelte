@@ -1,9 +1,8 @@
 <script>
-  import { Router, Link, Route } from "svelte-navigator";
+  import { Router, Link, Route } from "svelte-routing";
   import Home from "./pages/Home.svelte";
   import About from "./pages/About.svelte";
   import Login from "./pages/Login.svelte";
-  import { BASE_URL } from "./consts";
 
   // Declares a component prop, it takes the value of main.js:5 name: 'World'
   export let name = "";
@@ -14,43 +13,37 @@
   let loggedUser = {};
 
   // It executes each time a component instance is created before render
-  fetch(`${BASE_URL}/api/versions`)
+  fetch("./api/versions")
     .then((response) => response.json())
     .then((body) => {
       flightVersion = body[0];
       svelteVersion = body[1];
     });
 
-  fetch(`${BASE_URL}/api/auth`)
+  fetch("./api/auth")
     .then((response) => response.json())
     .then((body) => {
       loggedUser = body;
     });
 </script>
 
-<Router basepath={BASE_URL}>
+<Router basepath={document.baseURI.replace(location.origin, "")}>
   <main>
     <h1>Hello {name}!</h1>
     <nav>
-      <Link to="/">
-        <a href="/">Home</a>
-      </Link>
-      <Link to="/about">
-        <a href="/about">About</a>
-      </Link>
+      <Link to="./">Home</Link>
+      <Link to="./about">About</Link>
       {#if loggedUser.isLogged}
-        <a href="/logout">Logout</a>
+        <a href="./logout">Logout</a>
       {:else}
-        <Link to="/login">
-          <a href="/login">Login</a>
-        </Link>
+        <Link to="./login">Login</Link>
       {/if}
     </nav>
     <div>
-      <Route primary={false} path="/">
+      <Route path="/">
         <Home {loggedUser} />
       </Route>
-      <Route primary={false} path="/about">
+      <Route path="/about">
         <About {flightVersion} {svelteVersion} />
       </Route>
       <Route component={Login} path="/login" />
