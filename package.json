@@ -3,7 +3,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "php -S localhost:8080 -t public"
+    "start": "php -S localhost:8080"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",

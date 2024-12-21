@@ -13,18 +13,20 @@
   let loggedUser = {};
 
   // It executes each time a component instance is created before render
-  fetch("./api/versions")
-    .then((response) => response.json())
-    .then((body) => {
-      flightVersion = body[0];
-      svelteVersion = body[1];
-    });
+  Promise.all([
+    fetch("./api/versions")
+      .then((response) => response.json())
+      .then((body) => {
+        flightVersion = body[0];
+        svelteVersion = body[1];
+      }),
 
-  fetch("./api/auth")
-    .then((response) => response.json())
-    .then((body) => {
-      loggedUser = body;
-    });
+    fetch("./api/auth")
+      .then((response) => response.json())
+      .then((body) => {
+        loggedUser = body;
+      }),
+  ]);
 </script>
 
 <Router basepath={document.baseURI.replace(location.origin, "")}>
