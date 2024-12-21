@@ -22,6 +22,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { argv } from 'node:process'
 import url from 'node:url'
+import readline from 'node:readline'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
@@ -33,12 +34,12 @@ const packageJson = JSON.parse(
 )
 
 packageJson.devDependencies = Object.assign(packageJson.devDependencies, {
-  '@rollup/plugin-typescript': '^11.1.6',
-  '@tsconfig/svelte': '^5.0.2',
-  'svelte-check': '^3.6.3',
-  'svelte-preprocess': '^5.1.3',
-  tslib: '^2.6.2',
-  typescript: '^5.3.3'
+  '@rollup/plugin-typescript': '^12.1.2',
+  '@tsconfig/svelte': '^5.0.4',
+  'svelte-check': '^4.1.1',
+  'svelte-preprocess': '^6.0.3',
+  tslib: '^2.8.1',
+  typescript: '^5.7.2'
 })
 
 // Add script for checking
@@ -154,7 +155,15 @@ console.info('Converted to TypeScript.')
 //   console.info('\nYou will need to re-run your dependency manager to get started.')
 // }
 
-spawn('npm', ['install'], {
-  shell: true,
-  stdio: ['ignore', 'inherit', 'inherit']
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
+rl.question('Which package manager are you using (npm, yarn, pnpm)? ', answer => {
+  spawn(answer, ['install'], {
+    shell: true,
+    stdio: ['ignore', 'inherit', 'inherit']
+  })
+  rl.close()
 })

@@ -3,6 +3,7 @@ import path from 'node:path'
 import url from 'node:url'
 import { argv } from 'node:process'
 import { spawn } from 'node:child_process'
+import readline from 'node:readline'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
@@ -11,12 +12,12 @@ const packageJson = JSON.parse(fs.readFileSync('package.json', { encoding: 'utf8
 
 packageJson.devDependencies = {
   ...packageJson.devDependencies,
-  '@biomejs/biome': '^1.7.3',
-  eslint: '^8.56.0',
-  'eslint-plugin-svelte': '^2.40.0',
-  stylelint: '^16.6.1',
+  '@biomejs/biome': '1.7.2',
+  eslint: '^8.57.1',
+  'eslint-plugin-svelte': '^2.46.1',
+  stylelint: '^16.12.0',
   'stylelint-config-html': '^1.1.0',
-  'stylelint-config-standard': '^36.0.0'
+  'stylelint-config-standard': '^36.0.1'
 }
 
 packageJson.stylelint = {
@@ -62,7 +63,15 @@ if (!argv[2]) {
 
 console.info('Linter dependencies added')
 
-spawn('npm', ['install'], {
-  shell: true,
-  stdio: ['ignore', 'inherit', 'inherit']
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
+rl.question('Which package manager are you using (npm, yarn, pnpm)? ', answer => {
+  spawn(answer, ['install'], {
+    shell: true,
+    stdio: ['ignore', 'inherit', 'inherit']
+  })
+  rl.close()
 })
