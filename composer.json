@@ -21,9 +21,7 @@
       "php -r \"if (!is_dir('node_modules')) `npm i`;\"",
       "npm run build",
       "composer archive"
-    ],
-    "pre-install-cmd": "composer check-platform-reqs",
-    "pre-update-cmd": "composer check-platform-reqs"
+    ]
   },
   "archive": {
     "exclude": [
@@ -41,7 +39,8 @@
       "package.json",
       "README.md",
       "rollup.config.js",
-      "jsconfig.json"
+      "jsconfig.json",
+      "pnpm-*"
     ]
   }
 }
