@@ -1,8 +1,9 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { Link, Route } from "svelte-routing";
   import Home from "./pages/Home.svelte";
   import About from "./pages/About.svelte";
   import Login from "./pages/Login.svelte";
+  import VeltRouter from "./VeltRouter.svelte";
 
   // Declares a component prop, it takes the value of main.js:5 name: 'World'
   export let name = "";
@@ -29,7 +30,7 @@
   ]);
 </script>
 
-<Router basepath={document.baseURI.replace(location.origin, "")}>
+<VeltRouter>
   <main>
     <h1>Hello {name}!</h1>
     <nav>
@@ -51,7 +52,7 @@
       <Route component={Login} path="/login" />
     </div>
   </main>
-</Router>
+</VeltRouter>
 
 <style>
   main {
