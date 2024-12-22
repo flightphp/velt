@@ -8,3 +8,5 @@ composer.phar
 /app/build/
 
 .DS_Store
+*.tar
+flightphp-velt-*
