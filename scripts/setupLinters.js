@@ -30,9 +30,9 @@ packageJson.stylelint = {
 
 packageJson.scripts = {
   ...packageJson.scripts,
-  lint: 'eslint ./app/* & biome lint app & stylelint "app/*"',
-  'lint:fix': 'eslint ./app/* --fix & biome check app --apply & stylelint "app/*" --fix',
-  format: 'biome format app --write'
+  lint: 'eslint ./src/* & biome lint src & stylelint "src/*"',
+  'lint:fix': 'eslint ./src/* --fix & biome check src --apply & stylelint "src/*" --fix',
+  format: 'biome format src --write'
 }
 
 const replacer = null

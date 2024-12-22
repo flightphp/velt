@@ -36,9 +36,9 @@ function serve() {
 }
 
 export default defineConfig({
-  input: 'app/main.js',
+  input: 'src/main.js',
   output: {
-    file: 'public/build/bundle.js',
+    file: 'app/build/bundle.js',
     format: 'iife',
     name: 'app',
     sourcemap: true

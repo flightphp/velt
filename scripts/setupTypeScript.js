@@ -53,14 +53,14 @@ fs.writeFileSync(
   JSON.stringify(packageJson, null, '  ')
 )
 
-/* mv app/main.js to main.ts - note,
+/* mv src/main.js to main.ts - note,
 we need to edit rollup.config.js for this too */
-const beforeMainJsPath = path.join(projectRoot, 'app', 'main.js')
-const afterMainTsPath = path.join(projectRoot, 'app', 'main.ts')
+const beforeMainJsPath = path.join(projectRoot, 'src', 'main.js')
+const afterMainTsPath = path.join(projectRoot, 'src', 'main.ts')
 fs.renameSync(beforeMainJsPath, afterMainTsPath)
 
-// Switch the app.svelte file to use TS
-const appSveltePath = path.join(projectRoot, 'app', 'views', 'App.svelte')
+// Switch the src.svelte file to use TS
+const appSveltePath = path.join(projectRoot, 'src', 'views', 'App.svelte')
 let appFile = fs.readFileSync(appSveltePath, 'utf8')
 appFile = appFile.replace('<script>', '<script lang="ts">')
 appFile = appFile.replace('export let name;', 'export let name: string;')
@@ -79,7 +79,7 @@ import typescript from '@rollup/plugin-typescript';`
 )
 
 // Replace name of entry point
-rollupConfig = rollupConfig.replace("'app/main.js'", "'app/main.ts'")
+rollupConfig = rollupConfig.replace("'src/main.js'", "'src/main.ts'")
 
 // Add preprocessor
 rollupConfig = rollupConfig.replace(
@@ -99,8 +99,8 @@ fs.writeFileSync(rollupConfigPath, rollupConfig)
 const tsconfig = `{
   "extends": "@tsconfig/svelte/tsconfig.json",
 
-  "include": ["app/**/*"],
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/*", "__sapper__/*", "app/*"]
 }`
 
 const tsconfigPath = path.join(projectRoot, 'tsconfig.json')
@@ -118,7 +118,7 @@ const svelteConfigPath = path.join(projectRoot, 'svelte.config.js')
 fs.writeFileSync(svelteConfigPath, svelteConfig)
 
 // Add global.d.ts
-const dtsPath = path.join(projectRoot, 'app', 'global.d.ts')
+const dtsPath = path.join(projectRoot, 'src', 'global.d.ts')
 fs.writeFileSync(dtsPath, '/// <reference types="svelte" />')
 
 // Delete this script, but not during testing
