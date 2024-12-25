@@ -30,7 +30,6 @@
       "package-lock.json",
       "package.json",
       "README.md",
-      "rollup.config.js",
       "jsconfig.json",
       "pnpm-*",
       "main.js",
