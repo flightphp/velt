@@ -2,6 +2,7 @@
   "compilerOptions": {
     "checkJs": true,
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "resolveJsonModule": true
   }
 }
