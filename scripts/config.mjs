@@ -8,7 +8,10 @@ export const commonOptions = {
   entryPoints: ['src/main.js'],
   format: 'esm',
   loader: {
-    '.module.css': 'local-css'
+    '.module.css': 'local-css',
+    '.ttf': 'copy',
+    '.woff': 'copy',
+    '.woff2': 'copy'
   },
   outfile: 'app/build/bundle.js',
   target: ['es2018'],
