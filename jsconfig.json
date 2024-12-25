@@ -3,8 +3,5 @@
     "checkJs": true,
     "strict": true,
     "noImplicitAny": false
-  },
-  "exclude": [
-    "rollup.config.js"
-  ]
+  }
 }

@@ -10,3 +10,5 @@ composer.phar
 .DS_Store
 *.tar
 flightphp-velt-*
+.env
+src/env.d.ts
