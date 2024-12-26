@@ -32,6 +32,7 @@
 
 <VeltRouter>
   <main>
+    <img src="./svelte.svg" alt="Svelte logo" />
     <h1>Hello {name}!</h1>
     <nav>
       <Link to="./">Home</Link>
@@ -67,11 +68,31 @@
     text-transform: uppercase;
     font-size: 4em;
     font-weight: 100;
+    margin-top: 0;
+  }
+
+  img {
+    width: 7.5em;
+    height: 7.5em;
+    aspect-ratio: 1 / 1;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: rotate 2s alternate infinite;
+    }
   }
 
   @media (min-width: 640px) {
     main {
       max-width: none;
+    }
+  }
+
+  @keyframes rotateInZ {
+    from {
+      transform: rotateZ(0);
+    }
+    to {
+      transform: rotateZ(360deg);
     }
   }
 </style>
