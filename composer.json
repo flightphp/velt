@@ -34,7 +34,9 @@
       "pnpm-*",
       "main.js",
       "*.svelte",
-      "*.map"
+      "*.map",
+      "env.dist",
+      "env.d.ts"
     ]
   }
 }
